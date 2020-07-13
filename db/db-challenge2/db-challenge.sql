@@ -53,6 +53,6 @@ CREATE TABLE posts (
 CREATE TABLE chatroom_users (
     users_id INT(11) NOT NULL REFERENCES users(id),
     chatroom_users_id INT(11) NOT NULL REFERENCES chatroom(id),
-    joined_at DATETIME NOTNULL DEFAULT CURRENT_TIMESTAMP,
+    joined_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
     PRIMARY KEY(users_id,chatroom_users_id)
 );
