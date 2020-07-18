@@ -19,7 +19,7 @@ CREATE TABLE chatrooms (
     is_direct TINYINT(1) DEFAULT '0' NOT NULL CHECK(is_direct<=1),
     is_deleted TINYINT(1) DEFAULT '0' NOT NULL CHECK(is_deleted<=1),
     created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    created_user_id int(11) NOT NULL REFERENCES users(id),
+    create_user_id int(11) NOT NULL REFERENCES users(id),
     updated_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     update_user_id INT(11) NOT NULL REFERENCES users(id)
 );
