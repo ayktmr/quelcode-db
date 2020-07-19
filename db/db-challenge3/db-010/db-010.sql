@@ -5,21 +5,26 @@ SELECT
 FROM
     (
         SELECT
-            MAX(posted_at) AS 最新投稿日時,
+            MAX(posts.posted_at) AS 最新投稿日時,
             posts.chatroom_id AS chatroom_id_new
         FROM
             posts
         JOIN
             users
             ON posts.post_user_id = users.id
+        JOIN
+            posts AS posts_no_dlt
+            ON posts.id = posts_no_dlt.id
         WHERE
             users.is_deleted = '0'
+        AND
+            posts_no_dlt.is_deleted = '0'
         GROUP BY
-            chatroom_id
+            posts.chatroom_id
     ) AS posts_new
 JOIN
     posts AS posts_new_user_id
-    ON posted_at = posts_new.最新投稿日時
+    ON posts_new.最新投稿日時 = posts_new_user_id.posted_at
     AND chatroom_id = posts_new.chatroom_id_new
 JOIN
     users AS users_new_name
