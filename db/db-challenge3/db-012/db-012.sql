@@ -8,10 +8,12 @@ SET
 WHERE
     is_deleted = 0
 AND
+    is_send = 1
+AND
     (id NOT IN(
-        SELECT DISTINCT chatroom_users_id
-        FROM chatroom_users
-        WHERE users_id = 1
-        )
-    AND is_send = 1);
+                SELECT DISTINCT chatroom_users_id
+                FROM chatroom_users
+                WHERE users_id = 1
+            )
+    );
 COMMIT;
